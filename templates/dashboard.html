@@ -13,27 +13,7 @@
 <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <!--<![endif]-->
-<style>
-.content {
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1em;
-    padding-right: 1em;
-    max-width: 1200px;
-}
-
-.dashboard-item {
-    padding-left: 40px;
-}
-
-.dashboard-title {
-    font-size: 24px;
-}
-
-.dashboard-body {
-    font-size: 20px;
-}
-</style>
+<link rel="stylesheet" href="{{ url_for('dashboard.static', filename='dashboard.css') }}">
 </head>
 <body>
 <div class="content">

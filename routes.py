@@ -9,7 +9,8 @@ from config import config
 import secrets
 
 module = Blueprint(config['module_name'], __name__,
-                    template_folder='templates')
+                    template_folder='templates',
+                    static_folder='static')
 
 @module.route('/')
 @require_secret
