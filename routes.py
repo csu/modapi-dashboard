@@ -32,7 +32,8 @@ def dashboard_index():
         diff = then - today
         grid_items.append({
             'title': item['title'],
-            'body': '%s days' % diff.days
+            'body': '%s days' % diff.days,
+            'color': 'papayawhip'
         })
 
     return render_template('dashboard.html', grid_items=grid_items)

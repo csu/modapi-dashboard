@@ -26,7 +26,8 @@ but I'm leaving it here because it's cool
 {% for grid_row in grid_items | batch(8) %}
     {% for item in grid_row %}
     <div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8">
-        <div class="l-box dashboard-item">
+        <div class="l-box dashboard-item"
+            {% if 'color' in item %} style="background-color: {{ item['color'] }}" {% endif %} >
             <h3 class="dashboard-title">{{ item['title'] }}</h3>
             <p class="dashboard-body">{{ item['body'] }}</p>
         </div>
