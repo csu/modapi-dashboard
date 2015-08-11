@@ -11,4 +11,5 @@ module = Blueprint(config['module_name'], __name__,
 @module.route('/')
 @require_secret
 def dashboard_index():
-    return render_template('index.html')
+    
+    return render_template('dashboard.html', grid_items=grid_items)

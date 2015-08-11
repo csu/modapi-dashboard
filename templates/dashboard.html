@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+<!--<![endif]-->
+</head>
+<body>
+
+<div class="pure-g">
+<!--
+this batch filter doesn't actually do anything
+because pure doesn't care about rows,
+but I'm leaving it here because it's cool
+-->
+{% for grid_row in grid_items | batch(8) %}
+    {% for item in grid_row %}
+    <div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8">
+        <div class="l-box">
+            <h3>{{ item['title'] }}</h3>
+            <p>{{ item['body'] }}</p>
+        </div>
+    </div>
+    {% endfor %}
+{% endfor %}
+</div>
+
+</body>
+</html>
