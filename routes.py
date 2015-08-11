@@ -23,7 +23,7 @@ def dashboard_index():
     is_complete = requests.get(secrets.modapi_url('/github/streak/?onlyNotifyWhenIncomplete=true')).json()
     is_complete = is_complete['is_complete']
     github_item['body'] = 'Complete' if is_complete else 'Incomplete'
-    github_item['color'] = '#CCFF99' if is_complete else '#FFCC80'
+    github_item['color'] = '#CAE2B0' if is_complete else '#FFCC80'
     grid_items.append(github_item)
 
     # Countdowns
