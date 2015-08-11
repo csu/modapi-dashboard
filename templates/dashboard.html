@@ -13,9 +13,30 @@
 <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
 <!--<![endif]-->
+<style>
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: 1200px;
+}
+
+.dashboard-item {
+    padding-left: 40px;
+}
+
+.dashboard-title {
+    font-size: 24px;
+}
+
+.dashboard-body {
+    font-size: 20px;
+}
+</style>
 </head>
 <body>
-
+<div class="content">
 <div class="pure-g">
 <!--
 this batch filter doesn't actually do anything
@@ -25,14 +46,14 @@ but I'm leaving it here because it's cool
 {% for grid_row in grid_items | batch(8) %}
     {% for item in grid_row %}
     <div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8">
-        <div class="l-box">
-            <h3>{{ item['title'] }}</h3>
-            <p>{{ item['body'] }}</p>
+        <div class="l-box dashboard-item">
+            <h3 class="dashboard-title">{{ item['title'] }}</h3>
+            <p class="dashboard-body">{{ item['body'] }}</p>
         </div>
     </div>
     {% endfor %}
 {% endfor %}
 </div>
-
+</div>
 </body>
 </html>
