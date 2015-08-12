@@ -12,9 +12,9 @@ function modapiRequest(route) {
 }
 
 function createDashboardItem(item) {
-    var gridCell = $('<div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8"></div>');
+    var gridCell = $('<div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8 dashboard-item"></div>');
 
-    var dashboardItem = $('<div class="l-box dashboard-item"></div>');
+    var dashboardItem = $('<div class="l-box"></div>');
     if (item['color'] !== undefined) {
         dashboardItem.css('background-color', item['color']);
     }
