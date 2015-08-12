@@ -38,14 +38,3 @@ def countdowns_route():
             'color': 'papayawhip'
         })
     return items(grid_items)
-
-@module.route('/github_today')
-@module.route('/github_today/')
-@require_secret
-def github_route():
-    github_item = {'title': 'GitHub Commit'}
-    is_complete = requests.get(secrets.modapi_url('/github/streak/?onlyNotifyWhenIncomplete=true')).json()
-    is_complete = is_complete['is_complete']
-    github_item['body'] = 'Complete' if is_complete else 'Incomplete'
-    github_item['color'] = '#CAE2B0' if is_complete else '#FFCC80'
-    return items(github_item)
