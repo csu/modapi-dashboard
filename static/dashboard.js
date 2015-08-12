@@ -1,4 +1,5 @@
 var routes = [
+    "/todoist/today/dashboard/",
     "/lastfm/today/dashboard/",
     "/dashboard/countdowns/"
 ];
