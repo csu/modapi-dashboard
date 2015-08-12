@@ -1,4 +1,5 @@
 var routes = [
+    "/lastfm/today/dashboard/",
     "/dashboard/countdowns/"
 ];
 
@@ -48,6 +49,8 @@ function addCustomItems() {
 }
 
 $(document).ready(function() {
+    addCustomItems();
+
     routes.forEach(function(route) {
         $.get(modapiRequest(route), function(data) {
             data['items'].forEach(function(item) {
@@ -55,6 +58,4 @@ $(document).ready(function() {
             });
         });
     });
-
-    addCustomItems();
 });
