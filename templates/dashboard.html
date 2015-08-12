@@ -17,24 +17,14 @@
 </head>
 <body>
 <div class="content">
-<div class="pure-g">
-<!--
-this batch filter doesn't actually do anything
-because pure doesn't care about rows,
-but I'm leaving it here because it's cool
--->
-{% for grid_row in grid_items | batch(8) %}
-    {% for item in grid_row %}
-    <div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8">
-        <div class="l-box dashboard-item"
-            {% if 'color' in item %} style="background-color: {{ item['color'] }}" {% endif %} >
-            <h3 class="dashboard-title">{{ item['title'] }}</h3>
-            <p class="dashboard-body">{{ item['body'] }}</p>
-        </div>
-    </div>
-    {% endfor %}
-{% endfor %}
+    <div class="pure-g" id="dashboard"></div>
 </div>
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+var secret_key = "{{ secret_key }}";
+</script>
+<script src="{{ url_for('dashboard.static', filename='dashboard.js') }}"></script>
+
 </body>
 </html>
