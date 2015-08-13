@@ -1,9 +1,3 @@
-var routes = [
-    "/todoist/today/dashboard/",
-    "/lastfm/today/dashboard/",
-    "/dashboard/countdowns/"
-];
-
 function modapiRequest(route) {
     if (route.indexOf("?") > -1) {
         return route + '&secret=' + secret_key;

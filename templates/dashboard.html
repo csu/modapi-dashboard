@@ -23,6 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
     var secret_key = "{{ secret_key }}";
+    var routes = {{ routes | safe }};
     </script>
     <script src="{{ url_for('dashboard.static', filename='dashboard.js') }}"></script>
 </body>

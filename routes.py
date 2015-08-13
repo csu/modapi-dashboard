@@ -5,7 +5,7 @@ from flask import Blueprint, request, render_template, jsonify
 import requests
 
 from common import MODAPI_SECRET_KEY as secret_key
-from common import require_secret
+from common import require_secret, dashboard_items
 from config import config
 import secrets
 
@@ -13,15 +13,11 @@ module = Blueprint(config['module_name'], __name__,
                     template_folder='templates',
                     static_folder='static')
 
-def items(d):
-    if isinstance(d, list):
-        return jsonify({'items': d})
-    return jsonify({'items': [d]})
-
 @module.route('/')
 @require_secret
 def dashboard_index():
-    return render_template('dashboard.html', secret_key=secret_key)
+    return render_template('dashboard.html', secret_key=secret_key,
+            routes=secrets.DASHBOARD_ITEM_ROUTES)
 
 @module.route('/countdowns')
 @module.route('/countdowns/')
@@ -37,4 +33,4 @@ def countdowns_route():
             'body': '%s days' % diff.days,
             'color': 'papayawhip'
         })
-    return items(grid_items)
+    return dashboard_items(grid_items)
