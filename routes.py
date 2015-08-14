@@ -13,11 +13,27 @@ module = Blueprint(config['module_name'], __name__,
                     template_folder='templates',
                     static_folder='static')
 
+def get_dashboard_item_routes():
+    routes = secrets.DASHBOARD_ITEM_ROUTES
+
+    todoist_tasks_route = secrets.TODOIST_BASE_URL
+    for task in secrets.TODOIST_TASKS:
+        if '?' in todoist_tasks_route:
+            todoist_tasks_route += '?query=%s' % task['task']
+        else:
+            todoist_tasks_route += '&query=%s' % task['task']
+
+        if 'title' in task:
+            todoist_tasks_route += '--%s' % task['title']
+    routes.append(todoist_tasks_route)
+
+    return routes
+
 @module.route('/')
 @require_secret
 def dashboard_index():
     return render_template('dashboard.html', secret_key=secret_key,
-            routes=secrets.DASHBOARD_ITEM_ROUTES)
+            routes=get_dashboard_item_routes())
 
 @module.route('/countdowns')
 @module.route('/countdowns/')
