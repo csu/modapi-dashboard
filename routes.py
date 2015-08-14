@@ -14,7 +14,7 @@ module = Blueprint(config['module_name'], __name__,
                     static_folder='static')
 
 def get_dashboard_item_routes():
-    routes = secrets.DASHBOARD_ITEM_ROUTES
+    routes = secrets.DASHBOARD_ITEM_ROUTES[:]
 
     todoist_tasks_route = secrets.TODOIST_BASE_URL
     for task in secrets.TODOIST_TASKS:
