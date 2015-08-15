@@ -18,13 +18,15 @@ def get_dashboard_item_routes():
 
     todoist_tasks_route = secrets.TODOIST_BASE_URL
     for task in secrets.TODOIST_TASKS:
+        task_text = task['task'].replace(' ', '%20')
         if '?' in todoist_tasks_route:
-            todoist_tasks_route += '&query=%s' % task['task']
+            todoist_tasks_route += '&query=%s' % task_text
         else:
-            todoist_tasks_route += '?query=%s' % task['task']
+            todoist_tasks_route += '?query=%s' % task_text
 
         if 'title' in task:
-            todoist_tasks_route += '--%s' % task['title']
+            task_title = task['title'].replace(' ', '%20')
+            todoist_tasks_route += '--%s' % task_title
     routes.append(todoist_tasks_route)
 
     return routes
