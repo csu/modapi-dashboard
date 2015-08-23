@@ -5,9 +5,12 @@ function modapiRequest(route) {
     return route + '?secret=' + secret_key;
 }
 
-function createDashboardItem(item) {
+function createGridCell() {
     var gridCell = $('<div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8 dashboard-item"></div>');
+    return gridCell;
+}
 
+function createDashboardItem(item) {
     var dashboardItem = $('<div class="l-box"></div>');
     if (item['color'] !== undefined) {
         dashboardItem.css('background-color', item['color']);
@@ -18,8 +21,7 @@ function createDashboardItem(item) {
     dashboardItem.append(itemTitle);
     dashboardItem.append(itemBody);
 
-    gridCell.append(dashboardItem);
-    return gridCell;
+    return dashboardItem;
 }
 
 function buildItem(title, body, color) {
@@ -30,12 +32,27 @@ function buildItem(title, body, color) {
     };
 }
 
+function createRequest(index, route, items) {
+    var req = $.get(modapiRequest(route), function(data) {
+        items[index] = data;
+    });
+    return req;
+}
+
 $(document).ready(function() {
-    routes.forEach(function(route) {
-        $.get(modapiRequest(route), function(data) {
-            data['items'].forEach(function(item) {
-                $('#dashboard').append(createDashboardItem(item));
-            });
-        });
+    var requests = [];
+    var items = [];
+    for (var i = 0; i < routes.length; i++) {
+        requests[i] = createRequest(i, routes[i], items);
+    }
+    $.when.apply($, requests).then(function() {
+        for (var i = 0; i < items.length; i++) {
+            var currentItems = items[i]['items'];
+            for (var j = 0; j < currentItems.length; j++) {
+                var gridCell = createGridCell();
+                gridCell.append(createDashboardItem(currentItems[j]));
+                $('#dashboard').append(gridCell);
+            }
+        }
     });
 });
