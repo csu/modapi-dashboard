@@ -6,24 +6,20 @@
 
     <title>Dashboard</title>
 
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-    <![endif]-->
-    <!--[if gt IE 8]><!-->
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-    <!--<![endif]-->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+
     <link rel="stylesheet" href="{{ url_for('dashboard.static', filename='dashboard.css') }}">
 </head>
 <body>
-    <div class="content">
-        <div class="pure-g" id="dashboard"></div>
+    <div class="container">
+        <div id="dashboard"></div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
     <script type="text/javascript">
-    var secret_key = "{{ secret_key }}";
-    var routes = {{ routes | safe }};
+        var secret_key = "{{ secret_key }}";
+        var routes = {{ routes | safe }};
     </script>
     <script src="{{ url_for('dashboard.static', filename='dashboard.js') }}"></script>
 </body>

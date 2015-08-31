@@ -5,23 +5,23 @@ function modapiRequest(route) {
     return route + '?secret=' + secret_key;
 }
 
-function createGridCell() {
-    var gridCell = $('<div class="pure-u-1-2 pure-u-md-1-4 pure-u-lg-1-8 dashboard-item"></div>');
-    return gridCell;
-}
-
-function createDashboardItem(item) {
-    var dashboardItem = $('<div class="l-box"></div>');
+function createCard(item) {
+    var wrapper = $('<div class="col-xs-4 col-md-2 dashboard-item"></div>');
+    var card = $('<div class="card card-block"></div>');
     if (item['color'] !== undefined) {
-        dashboardItem.css('background-color', item['color']);
+        card.css('background-color', item['color']);
     }
 
-    var itemTitle = $('<h3 class="dashboard-title">' + item['title'] + '</h3>');
-    var itemBody = $('<p class="dashboard-body">' + item['body'] + '</p>');
-    dashboardItem.append(itemTitle);
-    dashboardItem.append(itemBody);
+    var cardTitle = $('<h4 class="card-title">' + item['title'] + '</h4>');
+    var cardBody = $('<p class="card-text">' + item['body'] + '</p>');
+    card.append(cardTitle);
+    card.append(cardBody);
+    wrapper.append(card);
+    return wrapper;
+}
 
-    return dashboardItem;
+function createRow() {
+    return $('<div class="row"></div>');
 }
 
 function buildItem(title, body, color) {
@@ -46,12 +46,17 @@ $(document).ready(function() {
         requests[i] = createRequest(i, routes[i], items);
     }
     $.when.apply($, requests).then(function() {
+        var currentRow;
+        var itemCount = 0;
         for (var i = 0; i < items.length; i++) {
             var currentItems = items[i]['items'];
             for (var j = 0; j < currentItems.length; j++) {
-                var gridCell = createGridCell();
-                gridCell.append(createDashboardItem(currentItems[j]));
-                $('#dashboard').append(gridCell);
+                if (itemCount % 6 == 0) {
+                    currentRow = createRow();
+                    $('#dashboard').append(currentRow);
+                }
+                currentRow.append(createCard(currentItems[j]));
+                itemCount++;
             }
         }
     });
