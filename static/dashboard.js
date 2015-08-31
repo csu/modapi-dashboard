@@ -6,7 +6,7 @@ function modapiRequest(route) {
 }
 
 function createCard(item) {
-    var wrapper = $('<div class="col-xs-4 col-md-2 dashboard-item"></div>');
+    var wrapper = $('<div class="col-xs-6 col-md-2 dashboard-item"></div>');
     var card = $('<div class="card card-block"></div>');
     if (item['color'] !== undefined) {
         card.css('background-color', item['color']);
