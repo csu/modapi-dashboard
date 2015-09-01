@@ -8,6 +8,10 @@
     padding-right: 5px;
 }
 
+.card-block {
+    text-align: center;
+}
+
 p.card-text {
-    font-size: larger;
+    font-size: 1.45rem;
 }
